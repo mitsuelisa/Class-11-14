@@ -22,12 +22,21 @@ x <- read_sheet("1QA_Xv9tAbKhwFdQpnVa2hTjhEdg5zAl4WY5EVanWSo0")
 glimpse(x)
 x %>% sample_n(10)
 
-#Plotting
+# Plotting
 
-x %>%
-  ggplot(aes( x = dem_adv, y = dvote)) + 
-  geom_jitter(height = .2, width =  +
+  ggplot(x, aes( x = dem_adv, y = dvote)) + 
+  geom_jitter(height = .2, width = .2, alpha = .2)  +
   geom_smooth(method = "lm", se = FALSE)
+  
+# Getting the regression
+  glm_1 <- glm(data = x, dvote ~ female, family = "binomial")
+  print(glm_1)
+  summary(glm_1)
+  
+#Plotting the regression 
+  ggplot(x, aes( x = female, y = dvote)) + 
+  geom_jitter(height = .2, width = .2, alpha = .2)  +
+  geom_smooth(method = "glm", method.orgs = list(family = "binomial"), se = FALSE)
+
+
 ```
-
-
