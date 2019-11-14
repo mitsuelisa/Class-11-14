@@ -1,0 +1,33 @@
+---
+title: "Class-11-14"
+author: "Mitsue Guerrero"
+date: "11/14/2019"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+
+
+library(googlesheets4)
+library(tidyverse)
+```
+
+```{r}
+sheets_deauth()
+x <- read_sheet("1QA_Xv9tAbKhwFdQpnVa2hTjhEdg5zAl4WY5EVanWSo0")
+
+# Exploring the data
+
+glimpse(x)
+x %>% sample_n(10)
+
+#Plotting
+
+x %>%
+  ggplot(aes( x = dem_adv, y = dvote)) + 
+  geom_jitter(height = .2, width =  +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
